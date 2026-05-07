@@ -27,7 +27,11 @@ async function signUp() {
 }
 
 
-/** @returns {Promise<boolean>} true if all checks pass, false otherwise */
+/**
+ * runs the input checks and looks if email is already taken
+ * @param {Object} signupObj - signup form fields (name, email, password, confirm)
+ * @returns {Promise<boolean>} true if everything is okay
+ */
 async function validateForm(signupObj) {
   if (!checkSignupInputs(signupObj.name, signupObj.email, signupObj.password, signupObj.confirm)) return false;
   if (await checkEmailExists(signupObj.email.value)) {
@@ -38,6 +42,10 @@ async function validateForm(signupObj) {
 }
 
 
+/**
+ * disables the button, saves the user and shows the toast
+ * @param {Object} signupObj - signup form fields
+ */
 async function showSuccess(signupObj) {
   document.getElementById('signupButton').disabled = true;
   await gatherUserInfo(signupObj.name.value, signupObj.email.value, signupObj.password.value);
@@ -80,7 +88,12 @@ async function checkEmailExists(email) {
 }
 
 
-/** @returns {boolean} */
+/**
+ * loops through login data and checks if email is already there
+ * @param {Object} loginData - all login entries from firebase
+ * @param {string} email - the entered email
+ * @returns {boolean} true if email already exists
+ */
 function checkEmailData(loginData, email) {
   let users = Object.values(loginData);
   for (let i = 0; i < users.length; i++) {
@@ -92,7 +105,14 @@ function checkEmailData(loginData, email) {
 }
 
 
-/** @returns {boolean} True if all inputs are valid */
+/**
+ * runs all input checks for signup form
+ * @param {HTMLInputElement} name - name input
+ * @param {HTMLInputElement} email - email input
+ * @param {HTMLInputElement} password - password input
+ * @param {HTMLInputElement} confirm - confirm password input
+ * @returns {boolean} true if all inputs are valid
+ */
 function checkSignupInputs(name, email, password, confirm) {
   let isValid = validateName(name);
   if (!validateEmail(email)) {
@@ -108,6 +128,11 @@ function checkSignupInputs(name, email, password, confirm) {
 }
 
 
+/**
+ * checks email input and shows error if not valid
+ * @param {HTMLInputElement} email - entered email input
+ * @returns {boolean} true if email is valid
+ */
 function validateEmail(email) {
   if (!isValidEmail(email.value)) {
     showInputError(email, 'Please enter a valid email address.');
@@ -117,6 +142,11 @@ function validateEmail(email) {
 }
 
 
+/**
+ * checks if a password was entered
+ * @param {HTMLInputElement} password - password input
+ * @returns {boolean} false if input is empty
+ */
 function validatePasswordLength(password) {
   if (password.value.length < 1) {
     showInputError(password, 'Please enter a password.');
@@ -126,6 +156,12 @@ function validatePasswordLength(password) {
 }
 
 
+/**
+ * checks if password and confirm password are the same
+ * @param {HTMLInputElement} password - password input
+ * @param {HTMLInputElement} confirm - confirm input
+ * @returns {boolean} true if both match
+ */
 function validatePasswordMatch(password, confirm) {
   if (confirm.value !== password.value) {
     showInputError(confirm, "Your passwords don't match. Please try again.");
@@ -153,7 +189,11 @@ function validateName(name) {
 }
 
 
-/** @returns {boolean} */
+/**
+ * tests email string against email pattern
+ * @param {string} email - email to check
+ * @returns {boolean} true if pattern matches
+ */
 function isValidEmail(email) {
   let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return pattern.test(email);
