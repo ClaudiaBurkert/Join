@@ -1,7 +1,4 @@
-/** @type {number|string|undefined} ID of the task currently open in the task-details dialog. */
 let currentTaskId;
-
-/** @type {Array<string>} Cached subtask review flags for the currently open task. */
 let subtaskStatusList = [];
 
 /**

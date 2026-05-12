@@ -1,26 +1,10 @@
-
-/** @type {string} Firebase base URL for all board-related requests. */
 const BOARDURLBASE = 'https://join-6f9cc-default-rtdb.europe-west1.firebasedatabase.app/';
-
-/** @type {Array<Object>} Cached task payload loaded from Firebase. */
 let TASK = [];
-
-/** @type {Array<Array<string>>} Cached task keys grouped by the loaded task collection. */
 let TASKKEYS = [];
-
-/** @type {number} Shared board counter used by legacy rendering helpers. */
 let count = 0;
-
-/** @type {number} Counter reserved for highlighted task placeholders. */
 let highlightTaskCount = 0;
-
-/** @type {number|string|undefined} ID of the task currently being dragged. */
 let curentTraggedElement;
-
-/** @type {Object<string, Object>} Cached contact records keyed by Firebase contact ID. */
 let allContactDetails = [];
-
-/** @type {MediaQueryList} Media query used to switch between desktop and mobile board layouts. */
 let myMediaQuery = window.matchMedia('(max-width: 1723px)');
 
 /**
