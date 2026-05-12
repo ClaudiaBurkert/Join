@@ -1,6 +1,4 @@
-/* ===============================
-   CONTACTS – PAGE LAYOUT
-   =============================== */
+
 
 
 .contacts-main {
@@ -23,7 +21,7 @@ body:has(.contacts-main) {
   background: #F6F7F8;
 }
 
-/* LEFT PANEL (Grundstruktur) */
+
 .contacts-panel {
   height: 100%;
   background: #fff;
@@ -41,7 +39,7 @@ body:has(.contacts-main) {
   min-height: 0;
 }
 
-/* Sticky Header */
+
 .contacts-panel-header {
   position: sticky;
   top: 0;
@@ -58,7 +56,7 @@ body:has(.contacts-main) {
   box-shadow: none;
 }
 
-/* Utilities */
+
 .hidden { display: none; }
 .d-none { display: none; }
 .contact-overlay.d-none, .contact-modal.d-none,

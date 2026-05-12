@@ -1,6 +1,4 @@
-/* ===============================
-   CONTACTS – LIST
-   =============================== */
+
 
 .ButtonBlueFilled {
   box-sizing: border-box;
@@ -71,7 +69,7 @@
   max-width: 100%;
 }
 
-/* Groups */
+
 .group-header {
   padding: 17px 36px 8px;
   font-family: 'Inter', sans-serif;
@@ -85,7 +83,7 @@
   margin-bottom: 16px;
 }
 
-/* Contact item */
+
 .contact-item {
   width: 352px;
   height: 78px;
@@ -159,7 +157,7 @@
   border-color: #fff;
 }
 
-/* Scrollbar */
+
 .contacts-panel::-webkit-scrollbar {
   width: 20px;
 }

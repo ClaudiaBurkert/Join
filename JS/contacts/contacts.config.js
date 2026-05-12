@@ -20,7 +20,8 @@ ContactsApp.state = {
   selectedContactId: null,
   isInitialized: false,
   modal: {
-    mode: null, // 'edit' | 'add' | null
+    /** @type {'edit'|'add'|null} Current modal mode. */
+    mode: null,
     contactId: null,
   },
 };

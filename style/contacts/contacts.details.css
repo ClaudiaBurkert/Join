@@ -1,6 +1,4 @@
-/* ===============================
-   CONTACTS – DETAILS PANEL
-   =============================== */
+
 
 .details {
   height: 100%;
@@ -51,7 +49,7 @@
   font-size: 16px;
 }
 
-/* ===== CONTACT DETAILS CARD ===== */
+
 
 .details-card {
   display: flex;

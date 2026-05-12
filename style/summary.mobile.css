@@ -1,7 +1,4 @@
-/* ===============================
-   SUMMARY MOBILE RESPONSIVE
-   Figma Mobile Specs: 428px x 926px
-   =============================== */
+
 @media (max-width: 1024px) {
   .main {
     overflow-y: auto;
@@ -98,7 +95,7 @@
     box-sizing: border-box;
   }
 
-  /* ===== HEADLINE ===== */
+
   .summaryHeadline {
     display: flex;
     flex-direction: column;
@@ -137,7 +134,7 @@
     order: 3;
   }
 
-  /* ===== GRID LAYOUT ===== */
+
   .summaryGrid {
     display: flex;
     flex-direction: column;
@@ -157,7 +154,7 @@
     overflow: visible;
   }
 
-  /* ===== ROWS & CARDS ===== */
+
   .summaryRow {
     display: flex;
     flex-direction: row;
@@ -172,7 +169,7 @@
     gap: 16px;
   }
 
-  /* Cards mobile size: 116x116 for squares */
+
   .summaryCard {
     border-radius: 20px;
     background: #FFFFFF;
@@ -205,7 +202,7 @@
     flex: 1 1 0;
   }
 
-  /* Icon sizes */
+
   .summaryIconCircle {
     width: 40px;
     height: 40px;
@@ -217,7 +214,7 @@
     height: 40px;
   }
 
-  /* Numbers & labels mobile sizes */
+
   .summaryNumber {
     font-size: 47px;
     font-weight: 600;
@@ -235,7 +232,7 @@
     gap: 10px;
   }
 
-  /* Urgent Card Mobile */
+
   .urgentLeft {
     flex-direction: row;
     gap: 20px;
@@ -292,7 +289,7 @@
     color: #2A3647;
   }
 
-  /* Square inner */
+
   .summarySquareInner {
     gap: 13px;
   }

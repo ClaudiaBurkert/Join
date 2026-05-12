@@ -1,17 +1,14 @@
-/* ===============================
-   CONTACTS - MOBILE MODAL OVERRIDES
-   Active on compact screens <= 1024px
-   =============================== */
+
 
 @media (max-width: 1024px) {
 
-  /* Overlay centering */
+
   .contact-overlay {
     align-items: center;
     justify-content: center;
   }
 
-  /* Modal container */
+
   .contact-modal {
     display: flex;
     flex-direction: column;
@@ -27,7 +24,7 @@
     clip-path: none;
   }
 
-  /* Left panel (blue header) */
+
   .contact-modal-left {
     position: relative;
     width: 100%;
@@ -92,7 +89,7 @@
     padding: 0;
   }
 
-  /* Right panel */
+
   .contact-modal-right {
     position: relative;
     flex: 1;
@@ -105,7 +102,7 @@
     z-index: 2;
   }
 
-  /* Close button */
+
   .contact-modal-close {
     position: absolute;
     top: 24px;
@@ -133,7 +130,7 @@
     background: rgba(255, 255, 255, 0.15);
   }
 
-  /* Body layout */
+
   .contact-modal-body {
     position: relative;
     width: 100%;
@@ -145,7 +142,7 @@
     padding-top: 0;
   }
 
-  /* Avatar */
+
   .contact-modal-avatar-wrap {
     position: relative;
     margin: -40px auto 10px;
@@ -174,7 +171,7 @@
     color: #fff;
   }
 
-  /* Form */
+
   .contact-modal-form {
     position: relative;
     top: auto;
@@ -234,7 +231,7 @@
     pointer-events: none;
   }
 
-  /* Actions */
+
   .contact-modal-actions {
     position: relative;
     top: auto;

@@ -1,8 +1,4 @@
 'use strict';
-
-/**
- * Mobile-specific interactions for Contacts page
- */
 window.ContactsApp = window.ContactsApp || {};
 
 /** @namespace ContactsApp.mobile */
@@ -59,10 +55,10 @@ ContactsApp.mobile = {
 
     const content = document.querySelector('.content');
     const mobileBackBtn = document.getElementById('mobileBackBtn');
-    
+
     if (content) content.classList.add('mobile-details-open');
     if (mobileBackBtn) mobileBackBtn.classList.remove('hidden');
-    
+
     this._updateFabVisibility();
   },
 
@@ -129,29 +125,31 @@ ContactsApp.mobile = {
   /** Resets mobile-specific state when the viewport exceeds the mobile breakpoint. */
   _handleMobileResize() {
     const isMobile = window.innerWidth <= (ContactsApp.config?.COMPACT_BREAKPOINT || 1024);
-    
+
     if (!isMobile) {
-      // Reset mobile-specific states on desktop
       this.closeMobileDetails();
       this.closeMobileOptionsMenu();
     }
-    
+
     this._updateFabVisibility();
   }
 };
 
-// Extend selectContact to handle mobile view
 const originalSelectContact = ContactsApp.uiList.selectContact;
+
+/**
+ * Selects a contact and opens the mobile detail view on compact screens.
+ * @param {Object} contact - The selected contact.
+ * @param {HTMLElement} element - The selected list element.
+ */
 ContactsApp.uiList.selectContact = function(contact, element) {
   originalSelectContact.call(this, contact, element);
-  
-  // Open mobile details view when contact is selected on mobile
+
   if (window.innerWidth <= (ContactsApp.config?.COMPACT_BREAKPOINT || 1024)) {
     ContactsApp.mobile.openMobileDetails();
   }
 };
 
-// Initialize mobile features when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
   ContactsApp.mobile.init();
 });

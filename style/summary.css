@@ -1,4 +1,4 @@
-/* Canvas padding nach Figma-Spacing (ohne fixe Positionen) */
+
 .main {
   overflow-y: clip;
 }
@@ -9,12 +9,12 @@
   box-sizing: border-box;
 }
 
-/* Headline */
+
 .summaryHeadline {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-top: 46px; /* damit es optisch wie Figma unter dem Header sitzt */
+  margin-top: 46px;
   margin-bottom: 60px;
 }
 
@@ -38,13 +38,13 @@
   color: var(--GlobalDarkBlue);
 }
 
-/* Layout: links Karten, rechts Greeting */
+
 .summaryGrid {
   display: grid;
   grid-template-columns: 560px 1fr;
   column-gap: 80px;
   align-items: start;
-  max-width: 1120px; /* wirkt wie im Screenshot, ohne alles zu strecken */
+  max-width: 1120px;
 }
 
 .summaryCards {
@@ -63,7 +63,7 @@
   justify-content: space-between;
 }
 
-/* Cards */
+
 .summaryCard {
   border: unset;
   background: #ffffff;
@@ -123,7 +123,7 @@
   padding: 25px 0;
 }
 
-/* Icon circle (edit / check) */
+
 .summaryIconCircle {
   width: 69px;
   height: 69px;
@@ -140,7 +140,7 @@
   height: 69px;
 }
 
-/* Numbers & labels */
+
 .summaryCardText {
   display: flex;
   flex-direction: column;
@@ -165,7 +165,7 @@
   text-align: center;
 }
 
-/* Urgent Card */
+
 .urgentLeft {
   width: 100%;
   display: flex;
@@ -232,7 +232,7 @@
   color: var(--GlobalDarkBlue);
 }
 
-/* Squares */
+
 .summarySquareInner {
   display: flex;
   flex-direction: column;
@@ -240,9 +240,9 @@
   gap: 13px;
 }
 
-/* Greeting */
+
 .summaryGreeting {
-  padding-top: 180px; /* wirkt wie Figma (rechts etwas tiefer) */
+  padding-top: 180px;
 }
 
 .greetLine {
@@ -260,7 +260,7 @@
   color: var(--GlobalLightBlue);
 }
 
-/* Responsive */
+
 @media (max-width: 1200px) {
   .summaryGrid {
     grid-template-columns: 1fr;

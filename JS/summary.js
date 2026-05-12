@@ -29,11 +29,19 @@ async function initSummary() {
   showMobileGreetingIfNeeded();
 }
 
+/**
+ * Loads all tasks from Firebase.
+ * @returns {Promise<Array<Object>>} Task objects from the database.
+ */
 async function getAllTasks() {
   const tasksObj = await DataGET('Tasks');
   return tasksObj ? Object.values(tasksObj) : [];
 }
 
+/**
+ * Renders all task count metrics.
+ * @param {Array<Object>} tasks - Task objects to count.
+ */
 function renderTaskCounts(tasks) {
   const counts = countTasks(tasks);
   setText('sum-todo', counts.todo);
@@ -44,11 +52,18 @@ function renderTaskCounts(tasks) {
   setText('sum-urgent', counts.urgent);
 }
 
+/**
+ * Renders the nearest upcoming deadline.
+ * @param {Array<Object>} tasks - Task objects to inspect.
+ */
 function renderNextDeadline(tasks) {
   const nextDeadline = getUpcomingDeadline(tasks);
   setText('sum-deadline-date', nextDeadline ? formatDateLong(nextDeadline) : '—');
 }
 
+/**
+ * Redirects anonymous visitors when session enforcement is enabled.
+ */
 function handleSessionRedirect() {
   const ENABLE_REDIRECT_IF_NO_SESSION = false;
   if (ENABLE_REDIRECT_IF_NO_SESSION && !sessionStorage.getItem('userName')) {
@@ -78,6 +93,11 @@ function countTasks(tasks) {
   return c;
 }
 
+/**
+ * Adds one task to the matching status and urgent counters.
+ * @param {Object} t - Task object to count.
+ * @param {{todo:number, inprogress:number, feedback:number, done:number, board:number, urgent:number}} c - Mutable counter object.
+ */
 function updateTaskCounts(t, c) {
   const col = t?.field?.field;
   if (col === 'field1') c.todo++;
@@ -124,6 +144,13 @@ function parseJoinDate(value) {
   return null;
 }
 
+/**
+ * Creates a date only when year, month, and day form a valid calendar date.
+ * @param {string|number} year - Four-digit year.
+ * @param {string|number} month - One-based month.
+ * @param {string|number} day - Day of month.
+ * @returns {Date|null} Valid date at start of day, or null.
+ */
 function createValidatedDate(year, month, day) {
   const yyyy = Number(year);
   const mm = Number(month);
@@ -171,6 +198,10 @@ function initGreeting() {
   if (greetName) greetName.textContent = getGreetingUserName();
 }
 
+/**
+ * Returns the greeting text for the current time of day.
+ * @returns {string} Greeting without punctuation.
+ */
 function getGreetingText() {
   const hour = new Date().getHours();
   if (hour < 12) return "Good morning";
@@ -178,6 +209,10 @@ function getGreetingText() {
   return "Good evening";
 }
 
+/**
+ * Returns the current user name for the greeting.
+ * @returns {string} User name, or an empty string for guests.
+ */
 function getGreetingUserName() {
   const userName = sessionStorage.getItem("userName");
   return sessionStorage.getItem("isGuest") === "true" || !userName ? "" : userName;
@@ -198,6 +233,10 @@ function wireSummaryNavigation() {
   document.querySelectorAll('[data-nav]').forEach(bindSummaryNavButton);
 }
 
+/**
+ * Binds pointer and click behavior to one summary card.
+ * @param {HTMLElement} button - Summary card button.
+ */
 function bindSummaryNavButton(button) {
   const clearPressedState = () => button.classList.remove('is-pressed');
   button.addEventListener('pointerdown', () => addPressedStateOnCompact(button));
@@ -206,16 +245,27 @@ function bindSummaryNavButton(button) {
   button.addEventListener('click', () => handleSummaryNavigation(button));
 }
 
+/**
+ * Adds the pressed state on compact screens.
+ * @param {HTMLElement} button - Summary card button.
+ */
 function addPressedStateOnCompact(button) {
   if (window.innerWidth <= SUMMARY_COMPACT_BREAKPOINT) button.classList.add('is-pressed');
 }
 
+/**
+ * Navigates to board immediately on desktop or after compact press feedback.
+ * @param {HTMLElement} button - Summary card button.
+ */
 function handleSummaryNavigation(button) {
   if (window.innerWidth > SUMMARY_COMPACT_BREAKPOINT) return goToBoard();
   button.classList.add('is-pressed');
   setTimeout(goToBoard, 140);
 }
 
+/**
+ * Navigates to the board page.
+ */
 function goToBoard() {
   window.location.href = 'board.html';
 }
@@ -236,6 +286,10 @@ function shouldShowMobileGreeting() {
   return window.innerWidth <= SUMMARY_COMPACT_BREAKPOINT && !sessionStorage.getItem('summaryVisited');
 }
 
+/**
+ * Creates the mobile greeting overlay element.
+ * @returns {HTMLDivElement} Greeting overlay element.
+ */
 function createGreetingOverlay() {
   const overlay = document.createElement('div');
   overlay.className = 'greeting-overlay';
@@ -244,6 +298,12 @@ function createGreetingOverlay() {
   return overlay;
 }
 
+/**
+ * Creates one text line for the mobile greeting overlay.
+ * @param {string} className - CSS class for the text node.
+ * @param {string} text - Text to render.
+ * @returns {HTMLDivElement} Greeting text element.
+ */
 function createGreetingTextNode(className, text) {
   const element = document.createElement('div');
   element.className = className;
@@ -251,6 +311,10 @@ function createGreetingTextNode(className, text) {
   return element;
 }
 
+/**
+ * Fades out and removes the mobile greeting overlay.
+ * @param {HTMLElement} overlay - Overlay element to remove.
+ */
 function fadeOutGreetingOverlay(overlay) {
   setTimeout(() => {
     overlay.classList.add('fade-out');

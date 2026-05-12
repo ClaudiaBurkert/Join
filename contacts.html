@@ -16,38 +16,31 @@
   <link rel="stylesheet" href="./style/contacts/contacts.modal.css" />
   <link rel="stylesheet" href="./style/contacts/contacts.notifications.css" />
   <link rel="stylesheet" href="./style/contacts/contacts.responsive.css" />
+  <link rel="stylesheet" href="./style/contacts/contacts.compact.css" />
   <link rel="stylesheet" href="./style/contacts/contacts.mobile.css" />
 </head>
 
 <body>
   <div class="app">
      <div id="sidebar-slot"></div>
-     <div id="header-slot"></div> 
-  
+     <div id="header-slot"></div>
 
-    <!-- Main area -->
     <div class="main contacts-main">
-      <!-- Content layout: list panel + details -->
       <div class="content">
-        <!-- Contacts list panel -->
         <section class="contacts-panel" aria-label="Contacts list">
-          <!-- Add new contact button (sticky bar) -->
           <div class="contacts-panel-header">
             <button class="ButtonBlueFilled" id="addContactBtn" type="button">
-              
+
               <span>Add new contact</span>
               <img src="./assets/img/person_add.svg" alt="Add" width="29.33" height="20.91">
-          
+
             </button>
           </div>
 
-          <!-- JS renders groups and items here -->
           <div class="contacts-list" id="contactsList"></div>
         </section>
 
-        <!-- Details area -->
         <section class="details" aria-label="Contact details">
-          <!-- Mobile back button -->
           <button class="mobile-back hidden" id="mobileBackBtn">
             <img src="./assets/img/arrow-left-line.svg" alt="Back">
           </button>
@@ -57,13 +50,6 @@
             <div class="details-divider"></div>
             <div class="details-sub">Better with a team</div>
           </div>
-
-          <!-- Empty state (when nothing is selected) -->
-          <!-- <div class="details-empty" id="detailsEmpty">
-            <p>Select a contact to see details.</p>
-          </div> -->
-
-          <!-- Selected contact details -->
           <div class="details-card hidden" id="detailsCard">
             <div class="details-card-top">
               <div class="badge-large" id="detailsBadge">AM</div>
@@ -103,7 +89,6 @@
     </div>
   </div>
 
-<!-- Mobile FABs (Floating Action Buttons) -->
 <button class="fab fab-add hidden" id="fabAdd">
   <img src="./assets/img/person_add.svg" alt="Add Contact">
 </button>
@@ -112,7 +97,6 @@
   <img src="./assets/img/more_vert.svg" alt="Options">
 </button>
 
-<!-- Mobile Options Menu -->
 <div class="contact-options-menu" id="contactOptionsMenu">
   <button class="contact-options-item" id="mobileEditBtn">
     <img src="./assets/img/edit.svg" alt="Edit">
@@ -124,16 +108,13 @@
   </button>
 </div>
 
-<!-- EDIT/ADD CONTACT MODAL -->
 <div id="contactOverlay" class="contact-overlay d-none">
   <div class="contact-modal">
 
-    <!-- Close button - direct child of modal for correct positioning on all viewports -->
     <button id="contactModalClose" class="contact-modal-close" aria-label="Close">
       <img src="./assets/img/Close.svg" alt="Close">
     </button>
 
-    <!-- LEFT PANEL -->
     <div class="contact-modal-left">
 
       <div class="contact-modal-brand">
@@ -147,7 +128,6 @@
       </div>
     </div>
 
-    <!-- RIGHT PANEL -->
     <div class="contact-modal-right">
 
       <div class="contact-modal-body">
@@ -159,21 +139,18 @@
         </div>
 
         <form id="contactModalForm" class="contact-modal-form" novalidate>
-          <!-- Name -->
           <div class="contact-input">
             <input id="modalName" type="text" placeholder="Name" autocomplete="off" class="InputField">
             <img class="contact-input-icon" src="./assets/img/person.svg" alt="">
           </div>
           <div id="modalErrName" class="modal-error"></div>
 
-          <!-- Email -->
           <div class="contact-input">
             <input id="modalEmail" type="text" placeholder="Email" autocomplete="off" class="InputField">
             <img class="contact-input-icon" src="./assets/img/mail.svg" alt="">
           </div>
           <div id="modalErrEmail" class="modal-error"></div>
 
-          <!-- Phone -->
           <div class="contact-input">
             <input id="modalPhone" type="text" placeholder="Phone" autocomplete="off" class="InputField">
             <img class="contact-input-icon" src="./assets/img/call.svg" alt="">
@@ -193,7 +170,6 @@
   </div>
 </div>
 
-<!-- Success Notification -->
 <div id="contactSuccessNotification" class="contact-success-notification">
   <div class="contact-success-content">
     Contact successfully created

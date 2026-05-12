@@ -1,6 +1,4 @@
-/* ===============================
-   CONTACTS – MODAL (ADD/EDIT)
-   =============================== */
+
 
 .contact-overlay {
   position: fixed;
@@ -25,7 +23,7 @@
   position: relative;
 }
 
-/* LEFT */
+
 .contact-modal-left {
   flex: 0 0 467px;
   min-height: 592px;
@@ -87,7 +85,7 @@
   opacity: 0.95;
 }
 
-/* RIGHT */
+
 .contact-modal-right {
   flex: 1;
   position: relative;
@@ -199,14 +197,14 @@
   gap: 6px;
 }
 
-/* Modal input wrapper - extends global InputWrapper */
+
 .contact-input {
   position: relative;
   width: 100%;
   max-width: 422px;
 }
 
-/* Modal input field - uses global InputField with modal-specific sizing */
+
 .contact-input .InputField {
   width: 100%;
   height: 50px;
@@ -214,7 +212,7 @@
   padding: 13px 48px 13px 21px;
 }
 
-/* Modal input icon - extends global InputFieldIcon concept */
+
 .contact-input-icon {
   position: absolute;
   top: 50%;
@@ -302,9 +300,7 @@
   height: 20px;
 }
 
-/* ===============================
-   DELETE CONFIRMATION POPUP
-   =============================== */
+
 .delete-confirm-overlay {
   position: fixed;
   inset: 0;
