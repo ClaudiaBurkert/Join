@@ -33,10 +33,6 @@
         justify-content: space-between;
     }
 
-    .mobileArrows {
-        display: unset;
-    }
-
     .taskMobileMove span {
         color: var(--GlobalWhite);
         font-size: 20px;
@@ -190,6 +186,11 @@
     .canvas-area {
         padding: 64px 96px;
     }
+
+    .mobileArrows {
+        display: unset;
+    }
+
 }
 
 @media (max-width: 750px) {

@@ -1,5 +1,10 @@
 
-/** Rebuilds the board layout when the viewport changes between desktop and mobile. */
+/**
+ * Rebuilds the board layout when the viewport changes between desktop and mobile.
+ *
+ * @param {MediaQueryListEvent|MediaQueryList} myMediaQuery Media query state for the board viewport.
+ * @returns {Promise<void>} Resolves after the board was rerendered for the new layout.
+ */
 async function widthChangeCallback(myMediaQuery) {
     if (myMediaQuery.matches) {
         document.getElementById('taskTableContent').innerHTML = taskBoardTamplateMobile();
@@ -15,14 +20,24 @@ async function widthChangeCallback(myMediaQuery) {
 }
 myMediaQuery.addEventListener('change', widthChangeCallback);
 
-/** Resets cached board task arrays and counters before a rerender. */
+/**
+ * Resets cached board task arrays and counters before a rerender.
+ *
+ * @returns {void}
+ */
 function resetArrays() {
     TASK = [];
     TASKKEYS = [];
     count = 0;
 }
 
-/** Opens the mobile move menu next to the selected task card. */
+/**
+ * Opens the mobile move menu next to the selected task card.
+ *
+ * @param {string} mobileArrowsMoveTaskID Element ID of the tapped mobile move trigger.
+ * @param {number|string} taskID Task ID that should be moved.
+ * @returns {void}
+ */
 function addMobileMoveTask(mobileArrowsMoveTaskID, taskID) {
     let refMobileArrowsMoveTaskID = document.getElementById(mobileArrowsMoveTaskID);
     let mobileArrowsMoveTaskPosition = refMobileArrowsMoveTaskID.getBoundingClientRect();
@@ -32,7 +47,11 @@ function addMobileMoveTask(mobileArrowsMoveTaskID, taskID) {
     document.getElementById('app-canvas').appendChild(refDiv);
 }
 
-/** Returns the horizontal offset used to keep the mobile move menu in view. */
+/**
+ * Returns the horizontal offset used to keep the mobile move menu in view.
+ *
+ * @returns {number} Horizontal offset in pixels.
+ */
 function chanchePositionMoveTaskMobile() {
     let moveTaskPositionOffset = 0;
     let mediaQuerymoveTaskMobile = window.matchMedia('(max-width: 670px)')
@@ -43,7 +62,14 @@ function chanchePositionMoveTaskMobile() {
     }
 }
 
-/** Chooses the correct mobile move menu template for the task's current column. */
+/**
+ * Chooses the correct mobile move menu template for the task's current column.
+ *
+ * @param {number|string} taskID Task ID whose move menu should be created.
+ * @param {HTMLElement} refDiv Wrapper element that receives the move menu markup.
+ * @param {DOMRect} mobileArrowsMoveTaskPosition Bounding rectangle of the tapped move trigger.
+ * @returns {void}
+ */
 function checkFieldTaskMobile(taskID, refDiv, mobileArrowsMoveTaskPosition) {
     let moveTaskPositionCheckedOffset = chanchePositionMoveTaskMobile();
     switch (TASK[0][`Task${taskID}`].field.field) {
@@ -58,12 +84,21 @@ function checkFieldTaskMobile(taskID, refDiv, mobileArrowsMoveTaskPosition) {
             break; }
 }
 
-/** Removes the temporary mobile move menu from the DOM. */
+/**
+ * Removes the temporary mobile move menu from the DOM.
+ *
+ * @returns {void}
+ */
 function removeMobileMoveTask() {
     document.getElementById("taskMobileMove").remove();
 }
 
-/** Moves a task one column upward in the mobile board flow when possible. */
+/**
+ * Moves a task one column upward in the mobile board flow when possible.
+ *
+ * @param {number|string} taskID Task ID to move upward.
+ * @returns {void}
+ */
 function taskMoveUpMobile(taskID) {
     let refField = TASK[0][`Task${taskID}`].field.field.slice(-1) * 1;
     if (refField > 1) {
@@ -71,7 +106,12 @@ function taskMoveUpMobile(taskID) {
     }
 }
 
-/** Moves a task one column downward in the mobile board flow when possible. */
+/**
+ * Moves a task one column downward in the mobile board flow when possible.
+ *
+ * @param {number|string} taskID Task ID to move downward.
+ * @returns {void}
+ */
 function taskMoveDownMobile(taskID) {
     let refField = TASK[0][`Task${taskID}`].field.field.slice(-1) * 1;
     if (refField < 4) {
@@ -79,7 +119,13 @@ function taskMoveDownMobile(taskID) {
     }
 }
 
-/** Updates a task's column from the mobile menu and persists the change. */
+/**
+ * Updates a task's column from the mobile menu and persists the change.
+ *
+ * @param {string} field Target board column ID.
+ * @param {number|string} taskID Task ID to move.
+ * @returns {Promise<void>} Resolves after the new field was stored remotely.
+ */
 async function moveToMobile(field, taskID) {
     TASK[0][`Task${taskID}`].field.field = `${field}`;
     renderMovedTask(field, taskID);

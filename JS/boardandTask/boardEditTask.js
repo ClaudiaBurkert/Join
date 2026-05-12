@@ -1,8 +1,18 @@
+/** @type {number|string} ID of the task currently edited in the board dialog. */
 let curentTaskID = 0;
+
+/** @type {boolean} Flag indicating whether add-task helpers currently run in edit mode. */
 let isEditTaskMode = false;
+
+/** @type {Array<string>} Editable list of subtask review flags for the active task. */
 let editSubTaskReview = [];
 
-/**Initializes edit mode for a task, fills the form with existing values, adjusts the dialog UI, and starts edit-specific setup.*/
+/**
+ * Initializes edit mode for a task, fills the form with existing values, and wires all edit helpers.
+ *
+ * @param {number|string} taskID Task ID to load into the edit dialog.
+ * @returns {Promise<void>} Resolves after the edit form is fully prepared.
+ */
 async function editPreparation(taskID) {
   let refTaskEditTask = TASK[0][`Task${taskID}`];
   isEditTaskMode = true;
@@ -17,14 +27,24 @@ async function editPreparation(taskID) {
   await setupFunctionEditTask( refTaskEditTask);
 }
 
-/** Copies the selected task values into the shared edit state object. */
+/**
+ * Copies the selected task values into the shared edit state object.
+ *
+ * @param {Object} refTaskEditTask Task object currently edited.
+ * @returns {void}
+ */
 function rewriteTaskFields(refTaskEditTask) {
   task.title = refTaskEditTask.title;
   task.description = refTaskEditTask.description;
   task.dueDate = refTaskEditTask.dueDate;
 }
 
-/**Wires up all edit-form behaviors (validation, priority, date, contacts, category, subtasks) and preloads task data into the form state.*/
+/**
+ * Wires up all edit-form behaviors and preloads task data into the shared form state.
+ *
+ * @param {Object} refTaskEditTask Task object currently edited.
+ * @returns {Promise<void>} Resolves after all edit helpers are initialized.
+ */
 async function setupFunctionEditTask( refTaskEditTask){
   setupSubtaskEnter();
   setupAssignedDropdownClose();
@@ -40,7 +60,12 @@ async function setupFunctionEditTask( refTaskEditTask){
   prepareSubTasksEditTask(refTaskEditTask);
 }
 
-/**Copies the task’s assigned contacts into the current edit state and renders them under the assignee input.*/
+/**
+ * Copies the task's assigned contacts into the current edit state and renders them below the assignee input.
+ *
+ * @param {Object} refTaskEditTask Task object currently edited.
+ * @returns {void}
+ */
 function prepareAssignedToEditTask(refTaskEditTask) {
   if (refTaskEditTask.assignedTo == [] || refTaskEditTask.assignedTo == undefined || refTaskEditTask.assignedTo == null) {
     return;
@@ -53,7 +78,12 @@ function prepareAssignedToEditTask(refTaskEditTask) {
   renderSelectedContactsBelowInput();
 }
 
-/**Loads existing subtasks and their checked/unchecked review state, then renders the subtask list. */
+/**
+ * Loads existing subtasks and their review state, then renders the subtask list.
+ *
+ * @param {Object} refTaskEditTask Task object currently edited.
+ * @returns {void}
+ */
 function prepareSubTasksEditTask(refTaskEditTask){
   let existingSubTasks = safeArray(refTaskEditTask.subTasks);
   let existingReview = safeText(refTaskEditTask?.subTasksReview?.[0], '').split(',');
@@ -63,7 +93,12 @@ function prepareSubTasksEditTask(refTaskEditTask){
   renderSubTasks();
 }
 
-/**Creates and appends the edit “OK” save button and stores the current task ID for saving. */
+/**
+ * Creates and appends the edit save button and stores the current task ID.
+ *
+ * @param {number|string} taskID Task ID that should be saved when the button is pressed.
+ * @returns {void}
+ */
 function createSaveDataEditTaskButton(taskID) {
   curentTaskID = taskID;
   let refsaveButtonEditTask = document.createElement('div');
@@ -72,7 +107,12 @@ function createSaveDataEditTaskButton(taskID) {
   document.querySelector(".buttonRequiredField").appendChild(refsaveButtonEditTask);
 }
 
-/**Checks the validation of dueDate, category and title*/
+/**
+ * Checks whether the required edit fields are valid before saving.
+ *
+ * @param {number|string} taskID Task ID being validated for saving.
+ * @returns {void}
+ */
 function checkValidation(taskID) {
   if (task.title == "" || task.dueDate == "" || task.category == "") {
       return;
@@ -84,19 +124,31 @@ function checkValidation(taskID) {
   
 }
 
-/**Shows the existing close button in edit mode by removing the hidden state class. */
+/**
+ * Shows the existing close button in edit mode by removing the hidden state class.
+ *
+ * @returns {void}
+ */
 function showExitButtonEditTask() {
   document.getElementById('boardTaskcloseDialogX').classList.remove('displayNone');
 }
 
-/**Creates the edit dialog close button and appends it to the add-task header area. */
+/**
+ * Creates the edit dialog close button and appends it to the add-task header area.
+ *
+ * @returns {void}
+ */
 function createExitButtonEditTask() {
   let refExitButtonEditTask = document.createElement('div');
   refExitButtonEditTask.innerHTML = `<div class= "closeDialogX" onclick = "closedialog('boardEditTask')">X</div>`;
   document.getElementById("addTaskHeaderContent").appendChild(refExitButtonEditTask);
 }
 
-/**Reads the current form inputs and writes title, description, due date, and category into the task state object. */
+/**
+ * Reads the current form inputs and writes them into the shared task state object.
+ *
+ * @returns {void}
+ */
 function getDataEditTask() {
   const editDialog = document.getElementById("boardEditTask");
   const titleInput = editDialog?.querySelector("#taskName") || document.getElementById("taskName");
@@ -109,7 +161,11 @@ function getDataEditTask() {
   task.category = selectedCategory;
 }
 
-/**Builds the updated task payload (including subtask review string), saves it via API, and reinitializes the board. */
+/**
+ * Builds the updated task payload, saves it via API, and reinitializes the board.
+ *
+ * @returns {Promise<void>} Resolves after the updated task was stored.
+ */
 async function saveDataEditTask(){
   let refTaskEditTask = TASK[0][`Task${curentTaskID}`];
   let checkboxString = getEditTaskSubtaskReviewString(task.subTasks, refTaskEditTask);
@@ -124,7 +180,13 @@ async function saveDataEditTask(){
     task.subTasks = [];
 }
 
-/**Produces a normalized comma-separated C/U review string for all current subtasks. */
+/**
+ * Produces a normalized comma-separated review string for all current subtasks.
+ *
+ * @param {Array<string>} subTasks Current subtask list.
+ * @param {Object} refTaskEditTask Original task object from Firebase.
+ * @returns {string} Comma-separated review state string.
+ */
 function getEditTaskSubtaskReviewString(subTasks, refTaskEditTask) {
   if (!Array.isArray(subTasks) || subTasks.length === 0) {
     return '';
@@ -135,7 +197,14 @@ function getEditTaskSubtaskReviewString(subTasks, refTaskEditTask) {
   return normalizedReview.toString();
 }
 
-/**Resolves each subtask review value by preferring edit-state values and falling back to stored ones. */
+/**
+ * Resolves each subtask review value by preferring edit-state values and falling back to stored ones.
+ *
+ * @param {Array<string>} fallbackReview Persisted review values from Firebase.
+ * @param {Array<string>} normalizedReview Mutable list that receives the normalized review values.
+ * @param {Array<string>} subTasks Current subtask list.
+ * @returns {void}
+ */
 function prepareEditSubTaskReview(fallbackReview, normalizedReview, subTasks){
   for (let index = 0; index < subTasks.length; index++) {
     if (editSubTaskReview[index] === 'C') {
@@ -148,7 +217,11 @@ function prepareEditSubTaskReview(fallbackReview, normalizedReview, subTasks){
   }
 }
 
-/**Appends an unchecked (U) review state when a new subtask is added in edit mode. */
+/**
+ * Appends an unchecked review state when a new subtask is added in edit mode.
+ *
+ * @returns {void}
+ */
 function handleSubtaskAddedInEditMode() {
   if (!isEditTaskMode) {
     return;
@@ -157,7 +230,12 @@ function handleSubtaskAddedInEditMode() {
   editSubTaskReview.push('U');
 }
 
-/**Removes the matching review state entry when a subtask is deleted in edit mode. */
+/**
+ * Removes the matching review state entry when a subtask is deleted in edit mode.
+ *
+ * @param {number} index Index of the deleted subtask.
+ * @returns {void}
+ */
 function handleSubtaskDeletedInEditMode(index) {
   if (!isEditTaskMode) {
     return;
