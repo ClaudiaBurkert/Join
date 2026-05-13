@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   handleGuestMobileNav();
 });
 
-
 /**
  * Handles sidebar visibility based on login state.
  * Hides navigation and shows a login button when not authenticated.
@@ -16,23 +15,33 @@ function handleSidebarAuth() {
   insertSidebarLoginButton();
 }
 
+/**
+ * Checks whether the logged-out sidebar state should be shown.
+ * @returns {boolean} True for anonymous visitors.
+ */
 function shouldShowLoggedOutSidebar() {
   const isGuest = sessionStorage.getItem("isGuest") === "true";
   const isLoggedIn = !!sessionStorage.getItem("contactId");
   return !isLoggedIn && !isGuest;
 }
 
+/** Hides the desktop sidebar navigation. */
 function hideSidebarNavigation() {
   const nav = document.querySelector(".nav");
   if (nav) nav.style.display = "none";
 }
 
+/** Adds a login button below the sidebar logo when missing. */
 function insertSidebarLoginButton() {
   const sidebarTop = document.querySelector(".sidebar-top");
   if (!sidebarTop || document.querySelector(".sidebar-login")) return;
   sidebarTop.insertAdjacentElement("afterend", createSidebarLoginButton());
 }
 
+/**
+ * Creates the logged-out sidebar login link.
+ * @returns {HTMLAnchorElement} Login link element.
+ */
 function createSidebarLoginButton() {
   const loginBtn = document.createElement("a");
   loginBtn.href = "./index.html";
@@ -66,6 +75,11 @@ function markActiveNav() {
     .forEach((selector) => toggleActiveNavLinks(selector, currentPage));
 }
 
+/**
+ * Toggles active state for navigation links matching the current page.
+ * @param {string} selector - Selector for the nav links to inspect.
+ * @param {string} currentPage - Current page file name.
+ */
 function toggleActiveNavLinks(selector, currentPage) {
   document.querySelectorAll(selector).forEach((link) => {
     const linkPage = link.getAttribute('href').split('/').pop();

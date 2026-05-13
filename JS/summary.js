@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   await initSummary();
 });
 
-
 /**
  * Initializes the summary page by loading tasks, rendering counts,
  * deadline, greeting, and navigation wiring.
@@ -219,14 +218,6 @@ function getGreetingUserName() {
 }
 
 /**
- * Returns the current user's name from session storage.
- * @returns {string} The username, or empty string if not set.
- */
-function getUserName() {
-  return sessionStorage.getItem('userName') || '';
-}
-
-/**
  * Wires click handlers on summary cards to navigate to the board page.
  */
 function wireSummaryNavigation() {
@@ -282,6 +273,10 @@ function showMobileGreetingIfNeeded() {
   fadeOutGreetingOverlay(overlay);
 }
 
+/**
+ * Checks whether the mobile greeting overlay should be shown.
+ * @returns {boolean} True when compact view has not shown the greeting yet.
+ */
 function shouldShowMobileGreeting() {
   return window.innerWidth <= SUMMARY_COMPACT_BREAKPOINT && !sessionStorage.getItem('summaryVisited');
 }
