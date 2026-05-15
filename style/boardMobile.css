@@ -162,7 +162,7 @@
     }
 
     .noTaskField {
-        width: calc(var(--boardWith) - 20px) !important;
+        width: calc(var(--boardWith) - 20px);
     }
 }
 
@@ -180,11 +180,11 @@
 
 @media (max-width: 769px) {
     :root {
-        --boardWith: 600px;
+        --boardWith: calc(100vw - 32px);
     }
 
     .canvas-area {
-        padding: 64px 96px;
+        padding: 64px 16px;
     }
 
     .mobileArrows {
@@ -195,13 +195,13 @@
 
 @media (max-width: 750px) {
     .canvas-area {
-        padding: 64px 60px;
+        padding: 64px 16px;
     }
 }
 
 @media (max-width: 700px) {
     :root {
-        --boardWith: 500px;
+        --boardWith: calc(100vw - 32px);
     }
 
 }
@@ -214,13 +214,13 @@
 
 @media (max-width: 610px) {
     :root {
-        --boardWith: 400px;
+        --boardWith: calc(100vw - 32px);
     }
 }
 
 @media (max-width: 500px) {
     :root {
-        --boardWith: 300px;
+        --boardWith: calc(100vw - 32px);
     }
 
     .searchBar input {
@@ -232,13 +232,13 @@
 
 @media (max-width: 390px) {
     .canvas-area {
-        padding: 64px 30px;
+        padding: 64px 16px;
     }
 }
 
 @media (max-width: 350px) {
     :root {
-        --boardWith: 270px;
+       --boardWith: calc(100vw - 32px);
     }
 
 }

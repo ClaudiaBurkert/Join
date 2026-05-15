@@ -1,4 +1,3 @@
-
 /**
  * Loads and renders all contacts assigned to the given task.
  *
