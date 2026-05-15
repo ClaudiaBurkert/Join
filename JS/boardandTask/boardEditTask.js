@@ -1,10 +1,5 @@
-/** @type {number|string} ID of the task currently edited in the board dialog. */
 let curentTaskID = 0;
-
-/** @type {boolean} Flag indicating whether add-task helpers currently run in edit mode. */
 let isEditTaskMode = false;
-
-/** @type {Array<string>} Editable list of subtask review flags for the active task. */
 let editSubTaskReview = [];
 
 /**
