@@ -6,7 +6,8 @@ window.ContactsApp = window.ContactsApp || {};
 ContactsApp.validation = {
   /**
    * Validates a contact object for required fields and format.
-   * @param {Object} contact - The contact to validate.
+  *
+  * @param {Object} contact The contact to validate.
    * @returns {{isValid: boolean, errors: string[]}} Validation result.
    */
   validateContact(contact) {
@@ -17,21 +18,39 @@ ContactsApp.validation = {
     return { isValid: errors.length === 0, errors };
   },
 
-  /** Adds a name validation error when needed. */
+  /**
+   * Adds a name validation error when needed.
+   *
+   * @param {Object} contact Contact object to validate.
+   * @param {string[]} errors Error collection to append to.
+   * @returns {void}
+   */
   _validateName(contact, errors) {
     if (!contact.name || contact.name.trim().length < 2) {
       errors.push('Name muss mindestens 2 Zeichen lang sein.');
     }
   },
 
-  /** Adds an email validation error when needed. */
+  /**
+   * Adds an email validation error when needed.
+   *
+   * @param {Object} contact Contact object to validate.
+   * @param {string[]} errors Error collection to append to.
+   * @returns {void}
+   */
   _validateEmail(contact, errors) {
     if (!contact.email || !this.isValidEmail(contact.email)) {
       errors.push('Gültige E-Mail-Adresse erforderlich.');
     }
   },
 
-  /** Adds a phone validation error when needed. */
+  /**
+   * Adds a phone validation error when needed.
+   *
+   * @param {Object} contact Contact object to validate.
+   * @param {string[]} errors Error collection to append to.
+   * @returns {void}
+   */
   _validatePhone(contact, errors) {
     if (contact.phone && !this.isValidPhone(contact.phone)) {
       errors.push('Telefonnummer hat ein ungültiges Format.');
@@ -40,7 +59,8 @@ ContactsApp.validation = {
 
   /**
    * Checks whether an email address has a valid format.
-   * @param {string} email - The email to validate.
+    *
+    * @param {string} email The email to validate.
    * @returns {boolean} True if the format is valid.
    */
   isValidEmail(email) {
@@ -49,7 +69,8 @@ ContactsApp.validation = {
 
   /**
    * Checks whether a phone number has a valid format.
-   * @param {string} phone - The phone number to validate.
+    *
+    * @param {string} phone The phone number to validate.
    * @returns {boolean} True if the format is valid.
    */
   isValidPhone(phone) {
@@ -58,7 +79,8 @@ ContactsApp.validation = {
 
   /**
    * Generates uppercase initials from a full name.
-   * @param {string} name - The full name.
+    *
+    * @param {string} name The full name.
    * @returns {string} One or two uppercase initials.
    */
   generateInitials(name) {
@@ -70,9 +92,11 @@ ContactsApp.validation = {
 
   /**
    * Returns a random color from a predefined palette.
+   *
    * @returns {string} A hex color string.
    */
   generateRandomColor() {
+    /** @type {string[]} Predefined contact badge colors. */
     const colors = [
       '#FF7A00', '#9327FF', '#6E52FF', '#FC71FF',
       '#FFBB2B', '#1FD7C1', '#FF5EB3', '#00BEE8',

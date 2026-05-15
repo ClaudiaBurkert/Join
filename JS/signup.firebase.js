@@ -17,7 +17,6 @@ const COLORS = [
   '#FC71FF',
 ];
 
-
 /**
  * starts email check and returns logindata and email
  * @param {string} email - the entered email
@@ -27,7 +26,6 @@ async function checkEmailExists(email) {
   let loginData = await fetchLoginData();
   return checkEmailData(loginData, email);
 }
-
 
 /**
  * collects all data from user
@@ -43,7 +41,6 @@ async function gatherUserInfo(name, email, password) {
   await createNewUserContact(id, color, date, email, initials, name);
   await createNewUserLogin(id, email, password);
 }
-
 
 /**
  * Creates new user contact in Firebase
@@ -61,7 +58,6 @@ async function createNewUserContact(id, color, date, email, initials, name) {
     body: JSON.stringify(buildUserContact(id, color, date, email, initials, name)),
   });
 }
-
 
 /**
  * Builds the user contact object to send to Firebase
@@ -86,7 +82,6 @@ function buildUserContact(id, color, date, email, initials, name) {
   };
 }
 
-
 /**
  * creates new login data for user in logindata in firebase
  * @param {string} id - contact user id
@@ -103,7 +98,6 @@ async function createNewUserLogin(id, email, password) {
     }),
   });
 }
-
 
 /**
  * fetches complete database contacts and extracts next highest free number for new user id
@@ -124,7 +118,6 @@ async function getNextContactId() {
   return 'c' + (maxNumber + 1);
 }
 
-
 /**
  * generates initals from user first and last name
  * @param {string} name - user first and last name
@@ -135,7 +128,6 @@ function generateInitials(name) {
   let initials = parts[0][0] + parts[1][0];
   return initials.toUpperCase();
 }
-
 
 /**
  * Assigns random color to new user

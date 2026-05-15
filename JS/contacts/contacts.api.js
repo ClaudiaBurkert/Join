@@ -6,7 +6,8 @@ window.ContactsApp = window.ContactsApp || {};
 ContactsApp.api = {
   /**
    * Sends a GET request to the Firebase database.
-   * @param {string} path - The database path to query.
+  *
+  * @param {string} path The database path to query.
    * @returns {Promise<Object|null>} Parsed JSON response.
    */
   async get(path) {
@@ -18,8 +19,9 @@ ContactsApp.api = {
 
   /**
    * Sends a PUT request to the Firebase database.
-   * @param {string} path - The database path.
-   * @param {Object} data - The data to write.
+    *
+    * @param {string} path The database path.
+    * @param {Object} data The data to write.
    * @returns {Promise<Object>} Parsed JSON response.
    */
   async put(path, data) {
@@ -35,8 +37,9 @@ ContactsApp.api = {
 
   /**
    * Sends a PATCH request to the Firebase database.
-   * @param {string} path - The database path.
-   * @param {Object} data - The data to merge.
+    *
+    * @param {string} path The database path.
+    * @param {Object} data The data to merge.
    * @returns {Promise<Object>} Parsed JSON response.
    */
   async patch(path, data) {
@@ -52,7 +55,8 @@ ContactsApp.api = {
 
   /**
    * Sends a DELETE request to the Firebase database.
-   * @param {string} path - The database path to delete.
+    *
+    * @param {string} path The database path to delete.
    * @returns {Promise<boolean>} True on success.
    */
   async del(path) {

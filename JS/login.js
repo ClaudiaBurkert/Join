@@ -1,6 +1,5 @@
 checkSessionForAnimation();
 
-
 /** Validates credentials and redirects on success */
 async function login() {
   document.getElementById('loginError').textContent = '';
@@ -88,12 +87,10 @@ document.getElementById('loginButton').addEventListener('click', function (event
   login();
 });
 
-
 document.getElementById('guestButton').addEventListener('click', function () {
   setGuest();
   window.location.href = 'summary.html';
 });
-
 
 /** saves guestlogin in sessionStorage */
 function setGuest() {
@@ -110,7 +107,6 @@ document.getElementById('loginEmail').addEventListener('input', function (event)
   document.getElementById('loginPassword').classList.remove('InputFieldError');
 });
 
-
 /** checks sessionStorage if the animation already played and removes the skipAnimation if necessary */
 function checkSessionForAnimation() {
   let logo = document.getElementById('logoAnimation');
@@ -120,6 +116,5 @@ function checkSessionForAnimation() {
     sessionStorage.setItem('animationPlayed', 'true');
   }
 }
-
 
 initPasswordToggles();

@@ -1,53 +1,10 @@
-/**
- * Base URL of the Firebase Realtime Database.
- * @constant {string}
- */
-const BASE_URL =
-  "https://join-6f9cc-default-rtdb.europe-west1.firebasedatabase.app/";
 
-/**
- * Stores all loaded contacts.
- * @type {Array<Object>}
- */
+const BASE_URL = "https://join-6f9cc-default-rtdb.europe-west1.firebasedatabase.app/";
 let contacts = [];
-
-/**
- * Stores the currently edited subtask index.
- * `null` means no subtask is currently being edited.
- * @type {?number}
- */
 let editingSubtaskIndex = null;
-
-/**
- * Determines whether the assigned contacts preview mode is active.
- * @type {boolean}
- */
 let assignedPreviewMode = false;
-
-/**
- * Reference to the medium priority button element.
- * @type {HTMLElement|null}
- */
 const mediumBtn = document.querySelector(".importanceLevel:nth-child(2)");
-
-/**
- * Reference to the low priority button element.
- * @type {HTMLElement|null}
- */
 const lowBtn = document.querySelector(".importanceLevel:nth-child(3)");
-
-/**
- * Stores the current task state.
- * @type {Object}
- * @property {string} title - Task title.
- * @property {string} description - Task description.
- * @property {string} dueDate - Due date of the task.
- * @property {string} priority - Selected priority level.
- * @property {Array<Object>} assignedTo - Assigned contacts.
- * @property {string} category - Task category.
- * @property {Array<string>} subTasks - List of subtasks.
- * @property {string} field - Board field identifier.
- */
 let task = {
   title: "",
   description: "",

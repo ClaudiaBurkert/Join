@@ -6,6 +6,7 @@ window.ContactsApp = window.ContactsApp || {};
 ContactsApp.firebase = {
   /**
    * Loads all contacts from Firebase and returns them as an array.
+  *
    * @returns {Promise<Array<Object>>} Array of contact objects with IDs.
    */
   async loadContacts() {
@@ -22,7 +23,8 @@ ContactsApp.firebase = {
 
   /**
    * Loads a single contact by its Firebase ID.
-   * @param {string} contactId - The contact ID to look up.
+    *
+    * @param {string} contactId The contact ID to look up.
    * @returns {Promise<Object|null>} The contact object, or null.
    */
   async loadContactById(contactId) {
@@ -39,8 +41,9 @@ ContactsApp.firebase = {
 
   /**
    * Updates an existing contact with a partial patch.
-   * @param {string} contactId - The contact ID to update.
-   * @param {Object} patch - Key-value pairs to merge.
+    *
+    * @param {string} contactId The contact ID to update.
+    * @param {Object} patch Key-value pairs to merge.
    * @returns {Promise<Object>} Updated contact data.
    */
   async updateContact(contactId, patch) {
@@ -50,7 +53,8 @@ ContactsApp.firebase = {
 
   /**
    * Deletes a contact from Firebase.
-   * @param {string} contactId - The contact ID to delete.
+    *
+    * @param {string} contactId The contact ID to delete.
    * @returns {Promise<boolean>} True on success.
    */
   async deleteContact(contactId) {
@@ -60,6 +64,7 @@ ContactsApp.firebase = {
 
   /**
    * Calculates the next sequential contact ID (e.g. "c5").
+    *
    * @returns {Promise<string>} The next available contact ID.
    */
   async getNextContactId() {
@@ -77,7 +82,8 @@ ContactsApp.firebase = {
 
   /**
    * Saves a new contact to Firebase with an auto-generated ID.
-   * @param {Object} contact - The contact data to save.
+    *
+    * @param {Object} contact The contact data to save.
    * @returns {Promise<string>} The generated contact ID.
    */
   async saveNewContact(contact) {

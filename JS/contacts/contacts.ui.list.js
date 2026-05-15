@@ -6,7 +6,9 @@ window.ContactsApp = window.ContactsApp || {};
 ContactsApp.uiList = {
   /**
    * Renders the full contacts list grouped by first letter.
-   * @param {Array<Object>} contactsData - Array of contact objects.
+  *
+  * @param {Array<Object>} contactsData Array of contact objects.
+  * @returns {void}
    */
   renderContactsList(contactsData) {
     const list = document.getElementById('contactsList');
@@ -25,8 +27,10 @@ ContactsApp.uiList = {
 
   /**
    * Selects a contact, highlights its list item, and renders details.
-   * @param {Object} contact - The contact object to select.
-   * @param {HTMLElement} element - The clicked list item element.
+    *
+    * @param {Object} contact The contact object to select.
+    * @param {HTMLElement} element The clicked list item element.
+    * @returns {void}
    */
   selectContact(contact, element) {
     document.querySelectorAll('.contact-item').forEach(i => {
@@ -43,7 +47,9 @@ ContactsApp.uiList = {
 
   /**
    * Renders the selected contact's details in the details panel.
-   * @param {Object} contact - The contact to display.
+    *
+    * @param {Object} contact The contact to display.
+    * @returns {void}
    */
   _renderDetails(contact) {
     const detailsCard = document.getElementById('detailsCard');
@@ -54,7 +60,12 @@ ContactsApp.uiList = {
     this._setDetailsEmail(contact.email);
   },
 
-  /** Updates the selected contact badge in the details panel. */
+  /**
+   * Updates the selected contact badge in the details panel.
+   *
+   * @param {Object} contact Contact data used for the badge contents.
+   * @returns {void}
+   */
   _showDetailsBadge(contact) {
     const badge = document.getElementById('detailsBadge');
     if (!badge) return;
@@ -62,7 +73,12 @@ ContactsApp.uiList = {
     badge.style.background = contact.color || '#2A3647';
   },
 
-  /** Updates the details email link. */
+  /**
+   * Updates the details email link.
+   *
+   * @param {string} email Email address shown in the details panel.
+   * @returns {void}
+   */
   _setDetailsEmail(email) {
     const emailLink = document.getElementById('detailsEmail');
     if (!emailLink) return;
@@ -70,7 +86,13 @@ ContactsApp.uiList = {
     emailLink.href = email ? `mailto:${email}` : '#';
   },
 
-  /** Updates a text node in the details panel. */
+  /**
+   * Updates a text node in the details panel.
+   *
+   * @param {string} id Element ID to update.
+   * @param {string} value Text value to assign.
+   * @returns {void}
+   */
   _setDetailsText(id, value) {
     const element = document.getElementById(id);
     if (element) element.textContent = value;
@@ -78,8 +100,9 @@ ContactsApp.uiList = {
 
   /**
    * Groups contacts alphabetically by first letter of name.
-   * @param {Array<Object>} list - Unsorted contacts array.
-   * @returns {Object} Contacts grouped by uppercase letter.
+    *
+    * @param {Array<Object>} list Unsorted contacts array.
+    * @returns {Object<string, Array<Object>>} Contacts grouped by uppercase letter.
    */
   _groupByFirstLetter(list) {
     const sorted = [...list].sort((a, b) => (a.name || '').localeCompare(b.name || ''));
@@ -94,7 +117,8 @@ ContactsApp.uiList = {
 
   /**
    * Creates a clickable contact list item DOM element.
-   * @param {Object} contact - The contact data.
+    *
+    * @param {Object} contact The contact data.
    * @returns {HTMLElement} The contact item element.
    */
   _contactItem(contact) {
@@ -107,7 +131,13 @@ ContactsApp.uiList = {
     return el;
   },
 
-  /** Applies attributes needed for a contact list item. */
+  /**
+   * Applies attributes needed for a contact list item.
+   *
+   * @param {HTMLElement} el Contact item element to configure.
+   * @param {Object} contact Contact data assigned to the element.
+   * @returns {void}
+   */
   _setupContactItem(el, contact) {
     el.className = 'contact-item';
     el.dataset.id = contact.id;
@@ -115,7 +145,12 @@ ContactsApp.uiList = {
     el.setAttribute('role', 'option');
   },
 
-  /** Creates the avatar badge for a contact item. */
+  /**
+   * Creates the avatar badge for a contact item.
+   *
+   * @param {Object} contact Contact used to build the badge.
+   * @returns {HTMLDivElement} Avatar badge element.
+   */
   _contactBadge(contact) {
     const badge = document.createElement('div');
     badge.className = 'badge';
@@ -124,7 +159,13 @@ ContactsApp.uiList = {
     return badge;
   },
 
-  /** Creates the text block for a contact item. */
+  /**
+   * Creates the text block for a contact item.
+   *
+   * @param {Object} contact Contact used to build the text block.
+   * @param {HTMLElement} el Contact item element passed through for current-user marking.
+   * @returns {HTMLDivElement} Text wrapper element for the contact item.
+   */
   _contactText(contact, el) {
     const text = document.createElement('div');
     text.className = 'contact-text';
@@ -133,7 +174,13 @@ ContactsApp.uiList = {
     return text;
   },
 
-  /** Creates the display name for a contact item. */
+  /**
+   * Creates the display name for a contact item.
+   *
+   * @param {Object} contact Contact used to build the name element.
+   * @param {HTMLElement} el Contact item element passed through for current-user marking.
+   * @returns {HTMLDivElement} Display name element.
+   */
   _contactName(contact, el) {
     const name = document.createElement('div');
     const isMe = contact.id === sessionStorage.getItem('contactId');
@@ -143,13 +190,24 @@ ContactsApp.uiList = {
     return name;
   },
 
-  /** Adds the current-user marker to a contact item. */
+  /**
+   * Adds the current-user marker to a contact item.
+   *
+   * @param {HTMLElement} el Contact item element.
+   * @param {HTMLElement} name Name element to update.
+   * @returns {void}
+   */
   _markAsMe(el, name) {
     el.classList.add('is-me');
     name.textContent += ' (You)';
   },
 
-  /** Creates the email text for a contact item. */
+  /**
+   * Creates the email text for a contact item.
+   *
+   * @param {Object} contact Contact used to build the email element.
+   * @returns {HTMLDivElement} Email element for the contact item.
+   */
   _contactEmail(contact) {
     const email = document.createElement('div');
     email.className = 'contact-email';
@@ -157,13 +215,26 @@ ContactsApp.uiList = {
     return email;
   },
 
-  /** Binds mouse and keyboard selection to a contact item. */
+  /**
+   * Binds mouse and keyboard selection to a contact item.
+   *
+   * @param {HTMLElement} el Contact item element.
+   * @param {Object} contact Contact represented by the element.
+   * @returns {void}
+   */
   _bindContactItem(el, contact) {
     el.addEventListener('click', () => this.selectContact(contact, el));
     el.addEventListener('keydown', e => this._selectContactWithKeyboard(e, contact, el));
   },
 
-  /** Selects a contact when Enter or Space is pressed. */
+  /**
+   * Selects a contact when Enter or Space is pressed.
+   *
+   * @param {KeyboardEvent} e Keyboard event from the contact item.
+   * @param {Object} contact Contact represented by the element.
+   * @param {HTMLElement} el Contact item element.
+   * @returns {void}
+   */
   _selectContactWithKeyboard(e, contact, el) {
     if (e.key !== 'Enter' && e.key !== ' ') return;
     e.preventDefault();
@@ -172,7 +243,8 @@ ContactsApp.uiList = {
 
   /**
    * Creates a letter group header element.
-   * @param {string} letter - The group letter.
+    *
+    * @param {string} letter The group letter.
    * @returns {HTMLElement} The header element.
    */
   _groupHeader(letter) {
@@ -184,6 +256,7 @@ ContactsApp.uiList = {
 
   /**
    * Creates a horizontal divider element.
+    *
    * @returns {HTMLElement} The divider element.
    */
   _divider() {
@@ -194,6 +267,8 @@ ContactsApp.uiList = {
 
   /**
    * Displays an empty state message in the contacts list.
+    *
+    * @returns {void}
    */
   _showEmptyState() {
     const list = document.getElementById('contactsList');

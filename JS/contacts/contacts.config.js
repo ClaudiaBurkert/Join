@@ -16,12 +16,17 @@ ContactsApp.config = {
 
 /** @type {Object} Global application state */
 ContactsApp.state = {
+  /** @type {Array<Object>} Loaded contacts for the current page session. */
   contacts: [],
+  /** @type {string|null} Currently selected contact ID. */
   selectedContactId: null,
+  /** @type {boolean} Whether the contacts page has already been initialised. */
   isInitialized: false,
+  /** @type {{mode: 'edit'|'add'|null, contactId: string|null}} Modal state for add/edit actions. */
   modal: {
     /** @type {'edit'|'add'|null} Current modal mode. */
     mode: null,
+    /** @type {string|null} Contact ID currently opened in the modal. */
     contactId: null,
   },
 };

@@ -6,7 +6,6 @@ async function signUp() {
   await showSuccess(signupObj);
 }
 
-
 /**
  * runs the input checks and looks if email is already taken
  * @param {Object} signupObj - signup form fields (name, email, password, confirm)
@@ -21,7 +20,6 @@ async function validateForm(signupObj) {
   return true;
 }
 
-
 /**
  * disables the button, saves the user and shows the toast
  * @param {Object} signupObj - signup form fields
@@ -35,7 +33,6 @@ async function showSuccess(signupObj) {
   }, 1500);
 }
 
-
 /**
  * returns the DOM Elements from the signup Form
  * @returns {Object} signup object
@@ -48,7 +45,6 @@ function getSignupData() {
     confirm: document.getElementById('signupConfirm'),
   };
 }
-
 
 /**
  * Creates toast element with success message after successful signup
@@ -64,7 +60,6 @@ function showToast(message) {
   }, 50);
 }
 
-
 /** Toggles the signup button by checking all inputs */
 function toggleSignupButton() {
   let name = getSignupUserName();
@@ -76,7 +71,6 @@ function toggleSignupButton() {
   button.disabled = !(name && email && password && confirm && checkbox);
 }
 
-
 /**
  * Gets trimmed signup name
  * @returns {string} Trimmed name
@@ -85,7 +79,6 @@ function getSignupUserName() {
   let name = document.getElementById('signupName').value.trim();
   return name;
 }
-
 
 /**
  * Gets trimmed email from signup
@@ -96,7 +89,6 @@ function getSignupEmail() {
   return email;
 }
 
-
 /**
  * gets password from signup
  * @returns {string} returns password
@@ -106,14 +98,12 @@ function getSignupPassword() {
   return password;
 }
 
-
 /** Initializes signup: form submit, input listeners and privacy checkbox */
 function initSignup() {
   initSignupForm();
   initSignupInputs();
   initSignupCheckbox();
 }
-
 
 /** Prevents default submit and triggers signUp() */
 function initSignupForm() {
@@ -123,7 +113,6 @@ function initSignupForm() {
     signUp();
   });
 }
-
 
 /** Wires input listeners that clear errors and toggle the signup button */
 function initSignupInputs() {
@@ -136,13 +125,11 @@ function initSignupInputs() {
   });
 }
 
-
 /** Wires the privacy checkbox change listener to toggle the signup button */
 function initSignupCheckbox() {
   let checkbox = document.getElementById('signupPrivacy');
   checkbox.addEventListener('change', toggleSignupButton);
 }
-
 
 initSignup();
 initPasswordToggles();

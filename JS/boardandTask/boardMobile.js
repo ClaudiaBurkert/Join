@@ -1,4 +1,3 @@
-
 /**
  * Rebuilds the board layout when the viewport changes between desktop and mobile.
  *

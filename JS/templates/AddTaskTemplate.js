@@ -1,5 +1,11 @@
-/** Returns the full Add Task form template with optional prefilled values. */
-/** Returns the full Add Task form template with optional prefilled values. */
+/**
+ * Returns the full Add Task form template with optional prefilled values.
+ *
+ * @param {string} taskName Prefilled task title.
+ * @param {string} taskDescription Prefilled task description.
+ * @param {string} taskDueDate Legacy due-date argument that is not currently rendered into the form.
+ * @returns {string} HTML markup for the Add Task form.
+ */
 function createTaskTemplate(taskName, taskDescription, taskDueDate) {
   return `
   <div id="addTaskHeaderContent" class="displayFLEX headerContent">
@@ -205,27 +211,33 @@ function createTaskTemplate(taskName, taskDescription, taskDueDate) {
   `;
 }
 
-/** Returns the markup for a subtask item in display or edit mode. */
+/**
+ * Returns the markup for a subtask item in display or edit mode.
+ *
+ * @param {string} text Subtask label to render.
+ * @param {number} index Index of the subtask in the current list.
+ * @returns {string} HTML markup for the subtask row.
+ */
 function subTaskTemplate(text, index) {
   const isEditing = editingSubtaskIndex === index;
 
   if (isEditing) {
     return `
-      <li class="subTaskItem editing">
-  <div class="subTaskEditContainer">
+    <li class="subTaskItem editing">
+    <div class="subTaskEditContainer">
     <textarea
-  class="subTaskEditInput"
-  onkeydown="handleEditKey(event, ${index}, this.value)"
-  autofocus
->${text}</textarea>
+    class="subTaskEditInput"
+    onkeydown="handleEditKey(event, ${index}, this.value)"
+    autofocus
+    >${text}</textarea>
 
     <div class="subTaskEditIcons">
      <img class="subtaskEditNote" onclick="deleteSubtask(${index})" src="./assets/img/Subtasks icons11.svg" alt="" />
       <div class="spacer Edit"></div>
     <img class="subtaskEditNote checkEdit" onclick="saveEditedSubtask(${index}, this)" src="./assets/img/check.png" alt="" />
     </div>
-  </div>
-  </li>
+    </div>
+    </li>
     `;
   }
 
@@ -246,7 +258,11 @@ function subTaskTemplate(text, index) {
   `;
 }
 
-/** Builds the assigned-to select options markup from available contacts. */
+/**
+ * Builds the assigned-to select options markup from available contacts.
+ *
+ * @returns {string} Option markup for the assigned-to select field.
+ */
 function assignedToTemplate() {
   let html = `<option value="" selected hidden>Select contacts to assign</option>`;
 
@@ -257,7 +273,12 @@ function assignedToTemplate() {
   return html;
 }
 
-/** Returns the option markup for a single contact entry. */
+/**
+ * Returns the option markup for a single contact entry.
+ *
+ * @param {{name: string}} contact Contact object used for the option label and value.
+ * @returns {string} HTML option markup for one contact.
+ */
 function assignedToOptionTemplate(contact) {
   return `
     <option value="${contact.name}">
@@ -266,7 +287,13 @@ function assignedToOptionTemplate(contact) {
   `;
 }
 
-/** Returns a selectable assigned-contact row with initials and checkbox state. */
+/**
+ * Returns a selectable assigned-contact row with initials and checkbox state.
+ *
+ * @param {{name: string, initials: string, color: string}} contact Contact displayed in the dropdown.
+ * @param {string} key Contact key used to toggle assignment state.
+ * @returns {string} HTML markup for one selectable assigned-contact row.
+ */
 function contactInitialsCircleTemplate(contact, key) {
   const isSelected = task.assignedTo.includes(key);
   const selectedClass = isSelected ? "selected" : "";
@@ -289,7 +316,12 @@ function contactInitialsCircleTemplate(contact, key) {
 `;
 }
 
-/** Returns the compact initials circle used in the assigned contacts preview. */
+/**
+ * Returns the compact initials circle used in the assigned contacts preview.
+ *
+ * @param {{initials: string, color: string}} contact Contact displayed in the preview badge.
+ * @returns {string} HTML markup for one assigned-contact preview badge.
+ */
 function contactInitialsPreviewTemplate(contact) {
   return `
     <div class="assignedCircle" 
@@ -299,6 +331,12 @@ function contactInitialsPreviewTemplate(contact) {
   `;
 }
 
+/**
+ * Returns the overflow badge for hidden assigned contacts.
+ *
+ * @param {number} count Number of hidden contacts.
+ * @returns {string} HTML markup for the hidden-contact overflow badge.
+ */
 function hiddenContactsTemplate(count) {
   return `
     <div class="assignedCircle" style="background-color: var(--GlobalBlue)">

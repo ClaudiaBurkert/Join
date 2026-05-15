@@ -4,7 +4,6 @@ function showSignupError() {
   document.getElementById('signupError').textContent = 'This email is already registered.';
 }
 
-
 /**
  * loops through login data and checks if email is already there
  * @param {Object} loginData - all login entries from firebase
@@ -20,7 +19,6 @@ function checkEmailData(loginData, email) {
   }
   return false;
 }
-
 
 /**
  * runs all input checks for signup form
@@ -44,7 +42,6 @@ function checkSignupInputs(name, email, password, confirm) {
   return isValid;
 }
 
-
 /**
  * checks email input and shows error if not valid
  * @param {HTMLInputElement} email - entered email input
@@ -57,7 +54,6 @@ function validateEmail(email) {
   }
   return true;
 }
-
 
 /**
  * checks if a password was entered
@@ -72,7 +68,6 @@ function validatePasswordLength(password) {
   return true;
 }
 
-
 /**
  * checks if password and confirm password are the same
  * @param {HTMLInputElement} password - password input
@@ -86,7 +81,6 @@ function validatePasswordMatch(password, confirm) {
   }
   return true;
 }
-
 
 /**
  * checks inputs and trims name, if first and last name are entered, shows error messages, and returns true if correct
@@ -105,7 +99,6 @@ function validateName(name) {
   return true;
 }
 
-
 /**
  * tests email string against email pattern
  * @param {string} email - email to check
@@ -115,7 +108,6 @@ function isValidEmail(email) {
   let pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return pattern.test(email);
 }
-
 
 /**
  * renders error messages and adds red borders at inputs
@@ -129,7 +121,6 @@ function showInputError(input, message) {
     errorSpan.textContent = message;
   }
 }
-
 
 /** clears the error messages and removes error css for all inputs */
 function clearSignupErrors() {
