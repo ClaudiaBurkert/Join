@@ -1,6 +1,3 @@
-/* Sidebar Component Styles */
-
-/* Reserve space for mobile bottom nav immediately to prevent flicker */
 @media (max-width: 768px) {
   #sidebar-slot::before {
     content: '';
@@ -51,7 +48,6 @@
   transform: scale(1.05);
 }
 
-/* Guest Login Button */
 .sidebar-login {
   width: 100%;
   height: 46px;
@@ -71,7 +67,6 @@
   color: var(--GlobalWhite);
 }
 
-/* Navigation (Figma-like) */
 .nav {
   width: 100%;
   display: flex;
@@ -97,7 +92,6 @@
   transition: background 0.1s ease, color 0.1s ease;
 }
 
-/* Remove the left bar and slide effects */
 .nav-item::before {
   content: none;
 }
@@ -115,7 +109,6 @@
   height: 30px;
 }
 
-/* Normalize SVG size after JS inlining */
 .nav-icon svg {
   width: 30px;
   height: 30px;
@@ -127,7 +120,6 @@
   color: var(--GlobalWhite);
 }
 
-/* Active: exakt wie Figma: #091931 */
 .nav-item.active {
   background: var(--GlobalDarkblue);
   color: var(--GlobalWhite);
@@ -137,7 +129,6 @@
   opacity: 1;
 }
 
-/* Sidebar Bottom */
 .sidebar-bottom {
   width: 100%;
   margin-top: auto;
@@ -171,18 +162,16 @@
   pointer-events: none;
 }
 
-/* Mobile Responsive */
 @media (max-width: 768px) {
   .sidebar {
     transform: translateX(-100%);
   }
-  
+
   .sidebar.mobile-open {
     transform: translateX(0);
   }
 }
 
-/* Sidebar Toggle Button (for mobile) */
 .sidebar-toggle {
   display: none;
   position: fixed;
@@ -212,7 +201,6 @@
   }
 }
 
-/* Overlay for mobile */
 .sidebar-overlay {
   display: none;
   position: fixed;
@@ -233,20 +221,15 @@
   }
 }
 
-/* ===============================
-   MOBILE BOTTOM NAVIGATION
-   =============================== */
 .mobile-nav {
-  display: none; /* Hidden on desktop */
+  display: none;
 }
 
 @media (max-width: 768px) {
-  /* Hide desktop sidebar on mobile */
   .sidebar {
     display: none;
   }
 
-  /* Show bottom navigation on mobile */
   .mobile-nav {
     display: flex;
     position: fixed;
@@ -313,16 +296,11 @@
     text-align: center;
   }
 
-  /* Add bottom padding to main content to prevent overlap */
   .main {
     padding-bottom: 100px;
   }
 }
 
-/* ===============================
-   GUEST MOBILE BOTTOM NAVIGATION
-   (for non-logged-in users on privacy/legal pages)
-   =============================== */
 .mobile-nav-guest {
   display: none;
 }
@@ -348,7 +326,6 @@
     animation: fadeInNav 0.15s ease-out;
   }
 
-  /* Hide the regular mobile nav for guests */
   .guest-mode .mobile-nav {
     display: none;
   }
