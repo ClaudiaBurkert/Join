@@ -93,7 +93,6 @@ async function DataDELETE(path = "") {
     let response = await fetch(BOARDURLBASE + path + '.json', {
         method: "DELETE"
     });
-
 }
 
 /**
@@ -108,7 +107,6 @@ function renderTaskDetailsContacts(contactDetails) {
         return;
     }
     reftaskDetailsATContainer.innerHTML += taskDetailContactsTamplate(contactDetails.initials, contactDetails.name, contactDetails.color);
-
 }
 
 /**

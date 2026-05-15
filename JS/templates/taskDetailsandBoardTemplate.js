@@ -32,8 +32,7 @@ function taskTamplate(taskID) {
                     </div>
                 <div>
                 </section>
-            </div>
-            `
+            </div>`
 }
 
 /**
@@ -150,7 +149,6 @@ function taskDetailsTamplate(taskID) {
              </div>
         </footer>
     </div>`
-
 }
 
 /**
@@ -217,7 +215,6 @@ function moveTamplateTaskMobileField1(taskID, mobileArrowsMoveTaskPosition, move
                             <td onclick = "removeMobileMoveTask(); taskMoveDownMobile(${taskID})" role="menuitem" class="taskMobileSubmenuItem">Review</td>
                         </tr>
                     </div>`;
-
 }
 
 /**
@@ -259,6 +256,5 @@ function moveTamplateTaskMobileField2_3(taskID, mobileArrowsMoveTaskPosition, mo
                             <td onclick = "removeMobileMoveTask(); taskMoveDownMobile(${taskID})" role="menuitem" class="taskMobileSubmenuItem"><img src="./assets/img/arrow_downward_TaskMobile.svg" alt="Arrow Down"></td>
                             <td onclick = "removeMobileMoveTask(); taskMoveDownMobile(${taskID})" role="menuitem" class="taskMobileSubmenuItem">Review</td>
                      </table>
-                    </div>`;
-    
+                    </div>`;  
 }

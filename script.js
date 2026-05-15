@@ -13,9 +13,7 @@ function checkAuth() {
   }
 }
 
-
 checkAuth();
-
 
 /**
  * Initializes password toggle functionality for all password fields.
@@ -92,6 +90,5 @@ async function fetchLoginData() {
     let loginData = await response.json();
     return loginData;
 }
-
 
 initLandscapeOverlay();

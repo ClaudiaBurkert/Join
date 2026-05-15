@@ -18,7 +18,7 @@
     }
 
     :root {
-        --boardWith: 800px;
+        --boardWith: calc(100vw - 424px);
     }
 
     .tablecontainer table {
@@ -132,7 +132,7 @@
 
 @media(max-width:1230px) {
     :root {
-        --boardWith: 600px;
+        --boardWith: calc(100vw - 424px);
     }
 
     .boardAddTaskButton {
@@ -170,11 +170,8 @@
     .canvas-area {
         padding: 64px 30px;
     }
-}
-
-@media (max-width: 900px) {
     :root {
-        --boardWith: 400px;
+        --boardWith: calc(100vw - 292px);
     }
 }
 
@@ -239,6 +236,15 @@
 @media (max-width: 350px) {
     :root {
        --boardWith: calc(100vw - 32px);
+    }
+
+    .mobileFieldProperties{
+        gap: 15px;
+    }
+
+    .tablecontainer td .taskContainer{
+        padding-right: 10px;
+        padding-left: 1px;
     }
 
 }

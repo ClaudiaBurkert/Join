@@ -124,7 +124,7 @@ dialog.closed::backdrop {
     margin-bottom: 20px;
     max-height: 200px;
     overflow: auto;
-    padding-left: 16px;
+    padding-left: 20px;
 }
 
 .subTasks span {
@@ -139,7 +139,7 @@ dialog.closed::backdrop {
     margin-bottom: 15px;
     max-height: 200px;
     overflow: auto;
-    padding-left: 16px;
+    padding-left: 14px;
 }
 
 .taskDetailsATContainer {

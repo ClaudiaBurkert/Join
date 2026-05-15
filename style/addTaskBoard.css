@@ -240,7 +240,8 @@
   #boardAddTask .taskDescription,
   #boardAddTask .taskNameContainer textarea,
   #boardAddTask .taskDescriptionContainer textarea,
-  #boardAddTask .addTaskDateContainer input {
+  #boardAddTask .addTaskDateContainer input,
+  #boardAddTask .ChoiceOption {
     font-size: 16px;
   }
 
