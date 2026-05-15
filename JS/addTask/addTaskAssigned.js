@@ -1,7 +1,3 @@
-/**
- * Stores the currently selected task category.
- * @type {string}
- */
 let selectedCategory = "";
 
 /**
